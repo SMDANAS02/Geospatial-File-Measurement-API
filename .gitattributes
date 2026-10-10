@@ -1,0 +1,7 @@
+# Normalise line endings to LF on commit (Windows CRLF → LF in repository)
+* text=auto eol=lf
+
+# Treat binary assets as binary
+*.png binary
+*.svg binary
+*.ico binary
