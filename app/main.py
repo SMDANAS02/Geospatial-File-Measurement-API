@@ -42,7 +42,7 @@ app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     description="""
-# GeoMeasure API 🌍📐
+# GeoMeasure API
 
 A RESTful backend service designed to safely parse and process geospatial files (KML, zipped Shapefiles) and compute measurements in metric units.
 

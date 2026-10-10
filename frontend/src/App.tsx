@@ -353,7 +353,7 @@ export function App() {
                 onClick={() => loadSampleDataset('/samples/new_york_central_park.kml', 'new_york_central_park.kml')}
                 title="Central Park perimeter polygon, reservoir track line, and Bethesda Terrace point"
               >
-                <span>🗽 Central Park NYC</span>
+                <span>Central Park NYC</span>
                 <span className="badge-kml">KML</span>
               </button>
               <button
@@ -363,7 +363,7 @@ export function App() {
                 onClick={() => loadSampleDataset('/samples/taj_mahal_heritage.kml', 'taj_mahal_heritage.kml')}
                 title="Taj Mahal Charbagh complex polygon, Yamuna riverfront line, and dome point"
               >
-                <span>🕌 Taj Mahal Complex</span>
+                <span>Taj Mahal Complex</span>
                 <span className="badge-kml">KML</span>
               </button>
               <button
@@ -373,7 +373,7 @@ export function App() {
                 onClick={() => loadSampleDataset('/samples/paris_gardens_shapefile.zip', 'paris_gardens_shapefile.zip')}
                 title="Paris Champ de Mars, Trocadéro, and Invalides parcel shapefiles"
               >
-                <span>🗼 Paris Gardens Parcels</span>
+                <span>Paris Gardens Parcels</span>
                 <span className="badge-zip">Shapefile ZIP</span>
               </button>
             </div>

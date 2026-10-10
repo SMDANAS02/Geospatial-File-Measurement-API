@@ -1,4 +1,4 @@
-# GeoMeasure API 🌍📐
+# GeoMeasure API
 
 A FastAPI backend and React + TypeScript frontend for uploading, validating, and measuring geospatial files. Accepts KML files and zipped ESRI Shapefiles, calculates polygon area and line length in metric units using a dynamically selected projected CRS, and persists results in SQLite.
 
@@ -92,8 +92,8 @@ Built as a portfolio project demonstrating geospatial data handling, security-co
 
 ```powershell
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/geospatial-measurement-api.git
-cd geospatial-measurement-api
+git clone https://github.com/SMDANAS02/Geospatial-File-Measurement-API.git
+cd Geospatial-File-Measurement-API
 
 # 2. Create and activate a virtual environment
 python -m venv .venv
@@ -856,7 +856,7 @@ git add .
 git commit -m "Initial commit: GeoMeasure API — all phases complete"
 
 # Create a new repository on GitHub, then:
-git remote add origin https://github.com/YOUR_USERNAME/geospatial-measurement-api.git
+git remote add origin https://github.com/SMDANAS02/Geospatial-File-Measurement-API.git
 git branch -M main
 git push -u origin main
 ```
