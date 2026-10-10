@@ -1,0 +1,25 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: geomeasure-api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - PROJECT_NAME=Geospatial File Measurement API
+      - DATABASE_URL=sqlite:///./geospatial.db
+      - MAX_UPLOAD_SIZE_BYTES=52428800
+      - CORS_ORIGINS=["http://localhost:5173","http://localhost:3000","http://127.0.0.1:5173"]
+    volumes:
+      - api-data:/app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  api-data:
