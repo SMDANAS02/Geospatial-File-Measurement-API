@@ -14,6 +14,7 @@ Built as a portfolio project demonstrating geospatial data handling, security-co
 - [Quick Start](#quick-start)
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
+  - [Docker Setup](#docker-setup)
 - [Environment Variables](#environment-variables)
 - [Running Tests](#running-tests)
 - [API Reference](#api-reference)
@@ -133,6 +134,21 @@ npm run dev
 ```
 
 The frontend will start at **http://localhost:5173** and connects to the backend at `http://localhost:8000` by default. The API base URL can be changed in the frontend's settings panel if you are running the backend on a different port.
+
+### Docker Setup
+
+You can also run the backend using Docker and Docker Compose:
+
+```bash
+# Build and run with Docker Compose
+docker compose up --build -d
+
+# Check health
+curl http://localhost:8000/health
+
+# Stop containers
+docker compose down
+```
 
 ---
 
