@@ -58,3 +58,6 @@ frontend/dist/
 dist/
 *.local
 
+# Demo artifacts
+demo_sample.kml
+demo_parcels.zip
