@@ -11,6 +11,7 @@ import {
   Eye,
   X,
   FileArchive,
+  Sparkles,
 } from 'lucide-react';
 import {
   checkBackendHealth,
@@ -52,9 +53,14 @@ export function App() {
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Check health on mount
+  // Check health and url params on mount
   useEffect(() => {
     checkHealth();
+    const params = new URLSearchParams(window.location.search);
+    const fileIdParam = params.get('file_id');
+    if (fileIdParam && fileIdParam !== '1' && fileIdParam.startsWith('geo-')) {
+      loadExistingFile(fileIdParam);
+    }
   }, []);
 
   const checkHealth = async () => {
@@ -63,6 +69,65 @@ export function App() {
       setBackendOnline(true);
     } catch {
       setBackendOnline(false);
+    }
+  };
+
+  const loadExistingFile = async (id: string) => {
+    try {
+      setIsLoading(true);
+      setErrorMessage(null);
+      setLoadingStep(`Loading dataset ${id}...`);
+      const [info, meas] = await Promise.all([
+        getFileInfo(id),
+        getFileMeasurements(id, 1, 50),
+      ]);
+      setCurrentFileId(id);
+      setFileInfo(info);
+      setMeasurements(meas);
+      setCurrentPage(1);
+    } catch (err: any) {
+      console.warn('Could not load file ID from URL:', err);
+    } finally {
+      setIsLoading(false);
+      setLoadingStep('');
+    }
+  };
+
+  const loadSampleDataset = async (samplePath: string, sampleFilename: string) => {
+    try {
+      setIsLoading(true);
+      setErrorMessage(null);
+      setLoadingStep(`Fetching sample file '${sampleFilename}'...`);
+      const response = await fetch(samplePath);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${sampleFilename} from sample library.`);
+      }
+      const blob = await response.blob();
+      const file = new File([blob], sampleFilename, {
+        type: sampleFilename.endsWith('.zip') ? 'application/zip' : 'application/vnd.google-earth.kml+xml',
+      });
+      setSelectedFile(file);
+
+      setLoadingStep('Uploading & projecting geometries to optimal metric CRS...');
+      const uploadRes = await uploadGeospatialFile(file);
+
+      setLoadingStep('Retrieving computed measurements...');
+      setCurrentFileId(uploadRes.id);
+
+      const [info, meas] = await Promise.all([
+        getFileInfo(uploadRes.id),
+        getFileMeasurements(uploadRes.id, 1, 50),
+      ]);
+
+      setFileInfo(info);
+      setMeasurements(meas);
+      setCurrentPage(1);
+      window.history.pushState({}, '', `?file_id=${uploadRes.id}`);
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Failed to process sample file.');
+    } finally {
+      setIsLoading(false);
+      setLoadingStep('');
     }
   };
 
@@ -271,6 +336,46 @@ export function App() {
               <span className="spec-tag">.kml (WGS84)</span>
               <span className="spec-tag">.zip (.shp, .shx, .dbf, .prj)</span>
               <span>Max 50 MB</span>
+            </div>
+          </div>
+
+          {/* Quick Try Sample Datasets */}
+          <div className="samples-toolbar">
+            <div className="samples-toolbar-header">
+              <Sparkles size={16} color="var(--navy-primary)" />
+              <span className="samples-toolbar-title">Try Live Sample Datasets (1-Click Measure):</span>
+            </div>
+            <div className="samples-btn-group">
+              <button
+                type="button"
+                className="btn-sample"
+                disabled={isLoading}
+                onClick={() => loadSampleDataset('/samples/new_york_central_park.kml', 'new_york_central_park.kml')}
+                title="Central Park perimeter polygon, reservoir track line, and Bethesda Terrace point"
+              >
+                <span>🗽 Central Park NYC</span>
+                <span className="badge-kml">KML</span>
+              </button>
+              <button
+                type="button"
+                className="btn-sample"
+                disabled={isLoading}
+                onClick={() => loadSampleDataset('/samples/taj_mahal_heritage.kml', 'taj_mahal_heritage.kml')}
+                title="Taj Mahal Charbagh complex polygon, Yamuna riverfront line, and dome point"
+              >
+                <span>🕌 Taj Mahal Complex</span>
+                <span className="badge-kml">KML</span>
+              </button>
+              <button
+                type="button"
+                className="btn-sample"
+                disabled={isLoading}
+                onClick={() => loadSampleDataset('/samples/paris_gardens_shapefile.zip', 'paris_gardens_shapefile.zip')}
+                title="Paris Champ de Mars, Trocadéro, and Invalides parcel shapefiles"
+              >
+                <span>🗼 Paris Gardens Parcels</span>
+                <span className="badge-zip">Shapefile ZIP</span>
+              </button>
             </div>
           </div>
 

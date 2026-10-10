@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Taj Mahal UNESCO World Heritage Complex</name>
+    <description>Monumental complex and gardens on the south bank of the Yamuna River in Agra, India.</description>
+    <Placemark>
+      <name>Taj Mahal Charbagh Gardens Complex</name>
+      <description>The walled monumental complex including the Mughal four-quadrant garden (Charbagh).</description>
+      <Polygon>
+        <extrude>0</extrude>
+        <tessellate>1</tessellate>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              78.040210,27.173150,0.0
+              78.040210,27.176250,0.0
+              78.044150,27.176250,0.0
+              78.044150,27.173150,0.0
+              78.040210,27.173150,0.0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Yamuna Riverbank Promenade</name>
+      <description>Northern riverside walkway bordering the Yamuna riverfront.</description>
+      <LineString>
+        <tessellate>1</tessellate>
+        <coordinates>
+          78.038500,27.176300,0.0
+          78.042180,27.176400,0.0
+          78.046000,27.176200,0.0
+        </coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>Main Marble Dome Center</name>
+      <description>Center point of the white marble dome mausoleum.</description>
+      <Point>
+        <coordinates>78.042142,27.175015,0.0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

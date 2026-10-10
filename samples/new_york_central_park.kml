@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>New York Central Park &amp; Landmarks</name>
+    <description>Central Park perimeter boundary, reservoir running loop, and Bethesda Terrace in Manhattan, New York.</description>
+    <Placemark>
+      <name>Central Park Boundary</name>
+      <description>The world-famous 843-acre urban park in Manhattan.</description>
+      <Polygon>
+        <extrude>0</extrude>
+        <tessellate>1</tessellate>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              -73.981886,40.768095,0.0
+              -73.958043,40.800569,0.0
+              -73.949280,40.796853,0.0
+              -73.973059,40.764379,0.0
+              -73.981886,40.768095,0.0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Reservoir Running Track</name>
+      <description>Jacqueline Kennedy Onassis Reservoir popular 2.5km running track.</description>
+      <LineString>
+        <tessellate>1</tessellate>
+        <coordinates>
+          -73.963289,40.784232,0.0
+          -73.959255,40.789124,0.0
+          -73.957539,40.787693,0.0
+          -73.961315,40.782801,0.0
+          -73.963289,40.784232,0.0
+        </coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>Bethesda Terrace &amp; Fountain</name>
+      <description>Architectural heart of Central Park overlooking the Lake.</description>
+      <Point>
+        <coordinates>-73.971166,40.773828,0.0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
